@@ -7,7 +7,7 @@
 WFnone <- function(form, train, test, learner, ...){ # workflow for using the original data set
   preds <- do.call(paste('cv', learner, sep='.'),
                    list(form, train,test, ...))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -15,7 +15,7 @@ WFRU <- function(form, train, test, learner, rel=rel, thr.rel=thr.rel, C.perc=C.
   newtr <- RandUnderRegress(form, train, rel=rel, thr.rel=thr.rel, C.perc=C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form,newtr,test,...))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -23,7 +23,7 @@ WFRO <- function(form, train, test, learner, rel=rel, thr.rel=thr.rel, C.perc=C.
   newtr <- RandOverRegress(form, train, rel, thr.rel, C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form,newtr,test,...))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -31,21 +31,21 @@ WFGN <- function(form, train, test, learner, rel, thr.rel, C.perc, pert, ...){
   newtr <- GaussNoiseRegress(form, train, rel, thr.rel, C.perc, pert)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form,newtr,test,...))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFsmote <- function(form, train, test, learner, rel, thr.rel, C.perc, k, repl, dist, p, ...){
   newtr <- SmoteRegress(form, train, rel, thr.rel, C.perc, k, repl, dist, p)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form,newtr,test,...))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFIS <- function(form, train, test, learner, rel, O, U, ...){
   newtr <- ImpSampRegress(form, train, rel=rel, thr.rel=NA, O, U)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form,newtr,test,...))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -85,7 +85,7 @@ cv.nnet <- function(form, train, test,...){
 # metrics definition for the estimation task
 # ============================================================
 
-eval.stats <- function(trues,preds, stats, thr.rel, method,npts,control.pts,ymin,ymax,tloss,epsilon) {
+eval.stats <- function(trues,preds, stats, thr.rel, method,npts,control.pts,ymin,ymax,tloss,epsilon, ...) {
   pc <- list()
   pc$method <- method
   pc$npts <- npts
