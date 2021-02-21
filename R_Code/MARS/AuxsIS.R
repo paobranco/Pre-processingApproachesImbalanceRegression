@@ -7,25 +7,25 @@
 WFnone_earth_nk10_d1 <- function(form, train, test, learner){ # workflow for using the original data set
   preds <- do.call(paste('cv', learner, sep='.'),
                    list(form, train, test, nk=10, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFnone_earth_nk10_d2 <- function(form, train, test, learner){ # workflow for using the original data set
   preds <- do.call(paste('cv', learner, sep='.'),
                    list(form, train, test, nk=10, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFnone_earth_nk17_d1 <- function(form, train, test, learner){ # workflow for using the original data set
   preds <- do.call(paste('cv', learner, sep='.'),
                    list(form, train, test, nk=17, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFnone_earth_nk17_d2 <- function(form, train, test, learner){ # workflow for using the original data set
   preds <- do.call(paste('cv', learner, sep='.'),
                    list(form, train, test, nk=17, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -36,14 +36,14 @@ WFRU_earth_nk10_d1 <- function(form, train, test, learner, rel=rel, thr.rel=thr.
   newtr <- RandUnderRegress(form, train, rel=rel, thr.rel=thr.rel, C.perc=C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFRU_earth_nk10_d2 <- function(form, train, test, learner, rel=rel, thr.rel=thr.rel, C.perc=C.perc, ...){
   newtr <- RandUnderRegress(form, train, rel=rel, thr.rel=thr.rel, C.perc=C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -51,7 +51,7 @@ WFRU_earth_nk17_d1 <- function(form, train, test, learner, rel=rel, thr.rel=thr.
   newtr <- RandUnderRegress(form, train, rel=rel, thr.rel=thr.rel, C.perc=C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -59,7 +59,7 @@ WFRU_earth_nk17_d2 <- function(form, train, test, learner, rel=rel, thr.rel=thr.
   newtr <- RandUnderRegress(form, train, rel=rel, thr.rel=thr.rel, C.perc=C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -67,28 +67,28 @@ WFRO_earth_nk10_d1 <- function(form, train, test, learner, rel=rel, thr.rel=thr.
   newtr <- RandOverRegress(form, train, rel, thr.rel, C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFRO_earth_nk10_d2 <- function(form, train, test, learner, rel=rel, thr.rel=thr.rel, C.perc=C.perc, ...){
   newtr <- RandOverRegress(form, train, rel, thr.rel, C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFRO_earth_nk17_d1 <- function(form, train, test, learner, rel=rel, thr.rel=thr.rel, C.perc=C.perc, ...){
   newtr <- RandOverRegress(form, train, rel, thr.rel, C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFRO_earth_nk17_d2 <- function(form, train, test, learner, rel=rel, thr.rel=thr.rel, C.perc=C.perc, ...){
   newtr <- RandOverRegress(form, train, rel, thr.rel, C.perc)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -97,28 +97,28 @@ WFGN_earth_nk10_d1 <- function(form, train, test, learner, rel, thr.rel, C.perc,
   newtr <- GaussNoiseRegress(form, train, rel, thr.rel, C.perc, pert)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFGN_earth_nk10_d2 <- function(form, train, test, learner, rel, thr.rel, C.perc, pert, ...){
   newtr <- GaussNoiseRegress(form, train, rel, thr.rel, C.perc, pert)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFGN_earth_nk17_d1 <- function(form, train, test, learner, rel, thr.rel, C.perc, pert, ...){
   newtr <- GaussNoiseRegress(form, train, rel, thr.rel, C.perc, pert)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFGN_earth_nk17_d2 <- function(form, train, test, learner, rel, thr.rel, C.perc, pert, ...){
   newtr <- GaussNoiseRegress(form, train, rel, thr.rel, C.perc, pert)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -126,14 +126,14 @@ WFsmote_earth_nk10_d1 <- function(form, train, test, learner, rel, thr.rel, C.pe
   newtr <- SmoteRegress(form, train, rel, thr.rel, C.perc, k, repl, dist, p)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFsmote_earth_nk10_d2 <- function(form, train, test, learner, rel, thr.rel, C.perc, k, repl, dist, p, ...){
   newtr <- SmoteRegress(form, train, rel, thr.rel, C.perc, k, repl, dist, p)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -141,7 +141,7 @@ WFsmote_earth_nk17_d1 <- function(form, train, test, learner, rel, thr.rel, C.pe
   newtr <- SmoteRegress(form, train, rel, thr.rel, C.perc, k, repl, dist, p)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -149,7 +149,7 @@ WFsmote_earth_nk17_d2 <- function(form, train, test, learner, rel, thr.rel, C.pe
   newtr <- SmoteRegress(form, train, rel, thr.rel, C.perc, k, repl, dist, p)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -158,7 +158,7 @@ WFIS_earth_nk10_d1 <- function(form, train, test, learner, rel, O, U, ...){
   newtr <- ImpSampRegress(form, train, rel=rel, thr.rel=NA, O, U)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=10, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -166,7 +166,7 @@ WFIS_earth_nk10_d2 <- function(form, train, test, learner, rel, O, U, ...){
   newtr <- ImpSampRegress(form, train, rel=rel, thr.rel=NA, O, U)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, train, test, nk=10, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -174,14 +174,14 @@ WFIS_earth_nk17_d1 <- function(form, train, test, learner, rel, O, U, ...){
   newtr <- ImpSampRegress(form, train, rel=rel, thr.rel=NA, O, U)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=1, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 WFIS_earth_nk17_d2 <- function(form, train, test, learner, rel, O, U, ...){
   newtr <- ImpSampRegress(form, train, rel=rel, thr.rel=NA, O, U)
   preds <- do.call(paste('cv',learner,sep='.'),
                    list(form, newtr, test, nk=17, degree=2, thresh=0.01))
-  WFoutput(rownames(test),responseValues(form,test),preds)
+  list(trues=responseValues(form,test),preds=preds)
 }
 
 
@@ -222,7 +222,7 @@ cv.nnet <- function(form, train, test,...){
 # metrics definition for the estimation task
 # ============================================================
 
-eval.stats <- function(trues,preds, stats, thr.rel, method,npts,control.pts,ymin,ymax,tloss,epsilon) {
+eval.stats <- function(trues,preds, stats, thr.rel, method,npts,control.pts,ymin,ymax,tloss,epsilon, ...) {
   pc <- list()
   pc$method <- method
   pc$npts <- npts
